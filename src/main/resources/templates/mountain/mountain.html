@@ -70,25 +70,6 @@ http://www.templatemo.com/tm-406-flex
         </div> <!-- /.site-main -->
             
 
-<script>
-
-var xhr = new XMLHttpRequest();
-var url = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoOpenAPI'; /*URL*/
-var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'F7m4klGXJhBQMADAXunThEloyiChhHHy5UZ6AzeaIUNBboB8kd3aI5T+GQP931YifdDfQC3kjd5XML+2wLbNog=='; /*Service Key*/
-queryParams += '&' + encodeURIComponent('searchWrd') + '=' + encodeURIComponent('북한산'); /**/
-xhr.open('GET', url + queryParams);
-xhr.onreadystatechange = function () {
-    if (this.readyState == 4) {
-        console.dir('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-    }
-};
-
-xhr.send('');
-//https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15058662
-</script>
-
-
-
 
 
 
