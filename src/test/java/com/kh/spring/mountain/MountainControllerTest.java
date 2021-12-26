@@ -31,7 +31,7 @@ public class MountainControllerTest {
 	@Test
 	@DisplayName("산 리스트 api 가져오기")
 	public void boardDetail() throws Exception{
-		mockMvc.perform(get("/board/board-detail")
+		mockMvc.perform(get("/mountain/dataList")
 				.param("bdIdx", "1"))
 		.andExpect(status().isOk())
 		.andDo(print());
