@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.spring.board.BoardService;
 import com.kh.spring.common.validator.ValidateResult;
@@ -31,9 +32,9 @@ public class MountainController {
 	 */
 	
 	@GetMapping("mountain-list")
-	public void joinForm(Model model) {
-		String result = mountainService.getData();
-		model.addAttribute("result",result);
+	public void mountainList(Model model,@RequestParam(required = false, defaultValue = "1") int page) {
+		 model.addAllAttributes(mountainService.findMountainsByPage(page));
+		//String result = mountainService.getData(); 데이터 insert
 	}
 	
 }

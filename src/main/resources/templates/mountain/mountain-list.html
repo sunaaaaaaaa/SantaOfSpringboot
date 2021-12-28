@@ -66,11 +66,26 @@ http://www.templatemo.com/tm-406-flex
             </div> <!-- /.site-header -->
         </div> <!-- /.site-main -->
             
-
-		<span th:text="|산정보 : ${result}|"></span>
-
-
-
+	<table style="text-align: center; " >
+		<thead>
+			<tr>
+				<th style="width: 15%">산이름</th>
+				<th style="width: 75%">위치</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="mountain : ${mountainList}">
+				<td>
+				<a th:text="${mountain.mntiname}" th:href="@{/mountain/mountain-detail(mntilistno=${mountain.mntilistno})}"></a>
+				</td>
+				<td th:text="${mountain.mntiadd}"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<!-- pagination section -->
+	<div th:replace="fragments :: paging"></div>	
+	
 
 
         <div id="footer">
