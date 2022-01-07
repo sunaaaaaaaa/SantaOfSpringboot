@@ -23,6 +23,7 @@ public class FileInfo {
 	@Id
 	@GeneratedValue
 	private Long flIdx;
+	private String typeIdx;
 	private String originFileName;
 	private String renameFileName;
 	private String savePath;

@@ -21,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import com.kh.spring.board.Board;
+import com.kh.spring.common.util.file.FileInfo;
+import com.kh.spring.common.util.file.FileUtil;
 import com.kh.spring.common.util.pagination.Paging;
 
 import lombok.RequiredArgsConstructor;
@@ -75,9 +77,34 @@ public class MountainService {
 				 // mntidetails; 산정보
 				 updateList.add(update);
 			 }
-			 
+
+			 //이미지가져오기
+			String imgURi = "http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoImgOpenAPI?ServiceKey=F7m4klGXJhBQMADAXunThEloyiChhHHy5UZ6AzeaIUNBboB8kd3aI5T%2BGQP931YifdDfQC3kjd5XML%2B2wLbNog%3D%3D&_type=json&mntiListNo=";
+
 			 for (int i = 0; i < updateList.size(); i++) {
 				 mountainRepository.save(updateList.get(i));
+				 
+				imgURi += updateList.get(i).getMntilistno();
+				URI imgOfURI = new URI(imgURi);
+				RestTemplate restTemplate2 = new RestTemplate();
+				
+				String response2 = restTemplate2.getForEntity(imgOfURI, String.class).getBody();
+
+				 //하나씩 까줌
+				 JSONParser parserOfImg = new JSONParser(); 
+				 JSONObject jsonObjectOfImg = (JSONObject) parserOfImg.parse(response2);
+				 JSONObject docuArrayOfImg = (JSONObject) jsonObjectOfImg.get("response");
+				 JSONObject docuArrayOfImg2 =(JSONObject) docuArrayOfImg.get("body");
+				 JSONObject docuArrayOfImg3 =(JSONObject) docuArrayOfImg2.get("items");
+				 JSONArray docuArrayOfImg4 =(JSONArray) docuArrayOfImg3.get("item");
+				 
+				 for (int j = 0; j < docuArrayOfImg4.size(); j++) {
+					 
+					 FileInfo updateOfImg = new FileInfo();
+					 
+					 JSONObject docuArrayOfImg5 = (JSONObject) docuArrayOfImg4.get(j); 
+					// updateOfImg.setTypeIdx(updateList.get(i).getMntilistno());
+				 }
 			 }
 			 
 		} catch (URISyntaxException | ParseException e) {
