@@ -39,6 +39,7 @@ public class MountainService {
 	@Transactional
 	public String getData(){
 		 List<Mountain> updateList = new ArrayList<Mountain>();
+		 List<MountainImg> updateImgList = new ArrayList<MountainImg>();
 		try {
 			String urlEncoding = "http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoOpenAPI?ServiceKey=F7m4klGXJhBQMADAXunThEloyiChhHHy5UZ6AzeaIUNBboB8kd3aI5T%2BGQP931YifdDfQC3kjd5XML%2B2wLbNog%3D%3D&_type=json&numOfRows=3200";
 
@@ -100,10 +101,16 @@ public class MountainService {
 				 
 				 for (int j = 0; j < docuArrayOfImg4.size(); j++) {
 					 
-					 FileInfo updateOfImg = new FileInfo();
+					 MountainImg updateOfImg = new MountainImg();
 					 
 					 JSONObject docuArrayOfImg5 = (JSONObject) docuArrayOfImg4.get(j); 
-					// updateOfImg.setTypeIdx(updateList.get(i).getMntilistno());
+					 
+					 updateOfImg.setMntidx(updateList.get(i).getMntilistno());
+					 updateOfImg.setMountain(updateList.get(i));
+					 updateOfImg.setImgfilename((String)docuArrayOfImg5.get("imgfilename"));
+					 
+					 updateImgList.add(updateOfImg);
+					 //Repository만들어야하낭?
 				 }
 			 }
 			 
